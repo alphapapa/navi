@@ -1504,27 +1504,30 @@ FUN-NO-PREFIX, otherwise add `outshine-' prefix and thus call the
          (buffer-live-p (marker-buffer (car buf-markers)))
          (buffer-live-p (marker-buffer (cadr buf-markers))))
         (navi-switch-to-twin-buffer)
-      (let* ((1st-level-headers
-              (if (eq orig-buffer-mode 'org-mode)
-                  (navi-calc-org-mode-headline-regexp 1)
-                (if outshine-enforce-no-comment-padding-p
-                    "^;;; "
-                  (regexp-quote
-                   (car (rassoc 1 outline-promotion-headings)))))))
-        ;; (regexp-quote
-        ;;  (outshine-calc-outline-string-at-level 1))))
-        (put 'navi (navi-make-buffer-key (buffer-name))
-             (set (intern (navi-make-marker-name)) (point-marker)))
-        (occur 1st-level-headers)
-        (navi-rename-buffer)
-        (navi-switch-to-twin-buffer)
-        (navi-mode)
-        (occur-next)
-        (move-marker
-         (car (navi-get-twin-buffer-markers)) (point))
-        (navi-set-regexp-quoted-line-at-point)))
-    (make-variable-buffer-local 'kill-buffer-hook)
-    (add-to-list 'kill-buffer-hook 'navi-clean-up)))
+      (if (rassoc 1 outline-promotion-headings)
+          (let* ((headlines (rassoc 1 outline-promotion-headings))
+                 (1st-level-headers
+                  (if (eq orig-buffer-mode 'org-mode)
+                      (navi-calc-org-mode-headline-regexp 1)
+                    (if outshine-enforce-no-comment-padding-p
+                        "^;;; "
+                      (regexp-quote
+                       (car (rassoc 1 outline-promotion-headings)))))))
+            ;; (regexp-quote
+            ;;  (outshine-calc-outline-string-at-level 1))))
+            (put 'navi (navi-make-buffer-key (buffer-name))
+                 (set (intern (navi-make-marker-name)) (point-marker)))
+            (occur 1st-level-headers)
+            (navi-rename-buffer)
+            (navi-switch-to-twin-buffer)
+            (navi-mode)
+            (occur-next)
+            (move-marker
+             (car (navi-get-twin-buffer-markers)) (point))
+            (navi-set-regexp-quoted-line-at-point))
+        (error "No headlines found in buffer for regexp [%s]" outline-regexp))
+      (make-variable-buffer-local 'kill-buffer-hook)
+      (add-to-list 'kill-buffer-hook 'navi-clean-up))))
 
 (defun navi-quit-and-switch ()
   "Quit navi-buffer and immediatley switch back to original-buffer"
