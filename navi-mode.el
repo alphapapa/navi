@@ -1091,7 +1091,7 @@ selecting the regexp, the value is the regexp itself"
                    (cadr (navi-get-twin-buffer-markers)))
                 (and
                  (eq major-mode 'org-mode)
-                 outline-promotion-headings)))))
+                 outshine-promotion-headings)))))
     (if args
         (navi-revert-function
          (if org-promo-headers
@@ -1127,7 +1127,7 @@ Language is derived from major-mode."
                     (cadr (navi-get-twin-buffer-markers)))
                  (and
                   (eq major-mode 'org-mode)
-                  outline-promotion-headings))))
+                  outshine-promotion-headings))))
          (rgxp
           (navi-make-regexp-alternatives
            (if args
@@ -1195,7 +1195,7 @@ in non-nil, only headers of level LEVEL are shown."
            (outshine-chomp
             (format
              "%s" (car (rassoc 1 (with-current-buffer orig-buf
-                                   outline-promotion-headings)))))))
+                                   outshine-promotion-headings)))))))
          (rgxp (if (not (and level
                              (integer-or-marker-p level)
                              (>= level 1)
@@ -1208,7 +1208,7 @@ in non-nil, only headers of level LEVEL are shown."
                        (car
                         (rassoc level
                                 (with-current-buffer orig-buf
-                                  outline-promotion-headings)))))
+                                  outshine-promotion-headings)))))
                    (concat
                     (dotimes (i (1- level) rgxp-string)
                       (setq rgxp-string
@@ -1406,7 +1406,7 @@ CAR of the return-list is always the marker pointing to
   "Make a sorted list of headings used for promotion/demotion commands.
 Set this to a list of MAX-LEVEL headings as they are matched by
 `outline-regexp', top-level heading first."
-  (setq outline-promotion-headings
+  (setq outshine-promotion-headings
         '(("* " . 1)
           ("** " . 2)
           ("*** " . 3)
@@ -1415,7 +1415,7 @@ Set this to a list of MAX-LEVEL headings as they are matched by
           ("****** " . 6)
           ("******* " . 7)
           ("******** " . 8)))
-  (make-variable-buffer-local 'outline-promotion-headings))
+  (make-variable-buffer-local 'outshine-promotion-headings))
 (org-add-hook 'org-mode-hook 'navi-make-org-mode-promotion-headings-list)
 
 ;; special treatment for Org-mode buffers
@@ -1435,7 +1435,7 @@ in non-nil, only headers of level LEVEL are shown."
             (rassoc
              level
              (or org-promo-headers
-                 outline-promotion-headings)))))
+                 outshine-promotion-headings)))))
       (concat
        "^"
        (if NO-PARENT-LEVELS
@@ -1510,7 +1510,7 @@ FUN-NO-PREFIX, otherwise add `outshine-' prefix and thus call the
                 (if outshine-enforce-no-comment-padding-p
                     "^;;; "
                   (regexp-quote
-                   (car (rassoc 1 outline-promotion-headings)))))))
+                   (car (rassoc 1 outshine-promotion-headings)))))))
         ;; (regexp-quote
         ;;  (outshine-calc-outline-string-at-level 1))))
         (put 'navi (navi-make-buffer-key (buffer-name))
