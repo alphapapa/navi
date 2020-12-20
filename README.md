@@ -593,33 +593,9 @@ usage pattern is the following:
 
 Install the three required libraries:
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="left">navi-mode.el</td>
-<td class="left">[navi-mode](https://github.com/alphapapa/navi)</td>
-</tr>
-
-
-<tr>
-<td class="left">outshine.el</td>
-<td class="left">[outshine](https://github.com/alphapapa/outshine)</td>
-</tr>
-
-
-<tr>
-<td class="left">outorg.el</td>
-<td class="left">[outorg](https://github.com/alphapapa/outorg)</td>
-</tr>
-</tbody>
-</table>
+- [navi-mode](https://github.com/alphapapa/navi)
+- [outshine](https://github.com/alphapapa/outshine)
+- [outorg](https://github.com/alphapapa/outorg)
 
 from the package-manager via MELPA or clone their github-repos. Follow
 the installation instructions in \`outshine.el' and \`outorg.el'.
@@ -638,43 +614,8 @@ with older versions or other types of Emacs have been made (yet).
 
 ## ChangeLog<a id="sec-1-3"></a>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-
-<col  class="right" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="left">date</th>
-<th scope="col" class="left">author(s)</th>
-<th scope="col" class="right">version</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td class="left"><span class="timestamp-wrapper"><span class="timestamp">&lt;2014-09-20 Sa&gt;</span></span></td>
-<td class="left">Thorsten Jolitz</td>
-<td class="right">2.0</td>
-</tr>
-
-
-<tr>
-<td class="left"><span class="timestamp-wrapper"><span class="timestamp">&lt;2013-05-03 Fr&gt;</span></span></td>
-<td class="left">Thorsten Jolitz</td>
-<td class="right">1.0</td>
-</tr>
-
-
-<tr>
-<td class="left"><span class="timestamp-wrapper"><span class="timestamp">&lt;2013-03-11 Mo&gt;</span></span></td>
-<td class="left">Thorsten Jolitz</td>
-<td class="right">0.9</td>
-</tr>
-</tbody>
-</table>
+| date            | author(s)       | version |
+|-----------------|-----------------|---------|
+| <2014-09-20 Sa> | Thorsten Jolitz | 2.0     |
+| <2013-05-03 Fr> | Thorsten Jolitz | 1.0     |
+| <2013-03-11 Mo> | Thorsten Jolitz | 0.9     |
