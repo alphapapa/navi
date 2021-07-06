@@ -283,8 +283,7 @@
 
 ;;; Mode Definitions
 
-(define-derived-mode navi-mode
-  occur-mode "Navi"
+(define-derived-mode navi-mode occur-mode "Navi"
   "Major mode for easy buffer-navigation.
 In this mode (derived from `occur-mode') you can easily navigate
 in an associated original-buffer via one-key commands in the
@@ -295,9 +294,7 @@ especially useful in buffers with outline structure, e.g. buffers
 with `outline-minor-mode' activated and `outshine' extensions
 loaded.
 \\{navi-mode-map}"
-  (set (make-local-variable 'revert-buffer-function) 'navi-revert-function)
-  ;; (setq case-fold-search nil)
-  )
+  (setq revert-buffer-function 'navi-revert-buffer-function))
 
 (define-derived-mode navi-edit-mode navi-mode "Navi-Edit"
   "Major mode for editing *Navi* buffers.
@@ -1572,6 +1569,13 @@ FUN-NO-PREFIX, otherwise add `outshine-' prefix and thus call the
         (eq major-mode 'navi-mode) (navi-mode))
     (goto-char
      (navi-search-less-or-equal-line-number))))
+
+(defun navi-revert-buffer-function (&optional _ignore-auto noconfirm)
+  "Wrapper for `revert-buffer-function'."
+  (when (or noconfirm
+            revert-without-query
+            (y-or-n-p "revert Navi buffer?"))
+    (navi-revert-function)))
 
 ;;;;; Navi Generic Command
 
